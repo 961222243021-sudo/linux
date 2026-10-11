@@ -90,10 +90,8 @@ void rational_best_approximation(
 			/* This tests if the semi-convergent is closer than the previous
 			 * convergent.  If d1 is zero there is no previous convergent as this
 			 * is the 1st iteration, so always choose the semi-convergent.
-			 * Avoid overflowing the multiplication of t by two.
 			 */
-			if (!d1 || t > ULONG_MAX / 2 || 2u * t > a ||
-			    (2u * t == a && d0 * dp > d1 * d)) {
+			if (!d1 || 2u * t > a || (2u * t == a && d0 * dp > d1 * d)) {
 				n1 = n0 + t * n1;
 				d1 = d0 + t * d1;
 			}

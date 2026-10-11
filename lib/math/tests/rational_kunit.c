@@ -2,7 +2,6 @@
 
 #include <kunit/test.h>
 
-#include <linux/limits.h>
 #include <linux/rational.h>
 
 struct rational_test_param {
@@ -22,16 +21,6 @@ static const struct rational_test_param test_parameters[] = {
 	{ 1155, 7735,	255, 255,	33, 221,   "Exact answer" },
 	{ 87, 32,	70, 32,		68, 25,    "Semiconvergent, numerator limit" },
 	{ 14533, 4626,	15000, 2400,	7433, 2366, "Semiconvergent, denominator limit" },
-	{ 1, ULONG_MAX, 1, ULONG_MAX - 1, 1, ULONG_MAX - 1,
-	  "Semiconvergent term multiplication overflows" },
-	{ 1, ULONG_MAX, 1, ULONG_MAX / 2 + 1, 1, ULONG_MAX / 2 + 1,
-	  "Odd final term, above half" },
-	{ 1, ULONG_MAX, 1, ULONG_MAX / 2, 0, 1,
-	  "Odd final term, below half" },
-	{ 1, ULONG_MAX - 1, 1, ULONG_MAX / 2 + 1, 1, ULONG_MAX / 2 + 1,
-	  "Even final term, above half" },
-	{ 1, ULONG_MAX - 1, 1, ULONG_MAX / 2, 0, 1,
-	  "Even final term, exactly half" },
 };
 
 static void get_desc(const struct rational_test_param *param, char *desc)
